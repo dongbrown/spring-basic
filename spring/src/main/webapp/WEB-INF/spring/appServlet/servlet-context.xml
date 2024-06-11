@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:websocket="http://www.springframework.org/schema/websocket"
+   xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+      http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+   <!-- @Controller클래스를 검색하게 하는 태그 설정 -->
+   <annotation-driven />
+   
+   <resources location="/resources/" mapping="/resources/**"/>
+   
+   <!-- 기본 viewresolver구현체 등록 -->
+   <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <beans:property name="prefix" value="/WEB-INF/views/"/> <!-- view 파일 경로의 접두사 -->
+      <beans:property name="suffix" value=".jsp"/> <!-- view 파일 경로의 접미사 -->
+   </beans:bean>
+   
+   <!-- 어노테이션으로 등록된 클래스 찾는 설정 -->
+   <context:component-scan base-package="com.bs.spring"/>   
+
+   <!--
+      pojo클래스 bean으로 등록하기 
+      <beans:bean>태그를 이용 
+      속성 
+         id : 등록된 bean이름 
+         class : 대상이 되는 class(패키지명.클래스명)
+   -->
+   <!-- default생성자를 이용해서 생성 -->
+   <!-- <beans:bean id="obok" class="com.bs.spring.beantest.Animal"/> -->
+   <!-- 
+      원하는 값을 bean 에 저장하기 -> 필드에 값을 저장하기
+      1. setter를 이용하기 -> <beans:property name="필드명" value="대입값">
+      2. 매개변수 있는 생성자 -> <beans:constructor-arg index="" value="">
+    -->
+  <!-- <beans:bean id="obok" class="com.bs.spring.beantest.Animal">
+      <beans:property name="name" value="오복스"/>
+      <beans:property name="age" value="2"/>
+   </beans:bean> -->   
+	
+	<beans:bean id="obok" class="com.bs.spring.beantest.Animal">
+		<beans:constructor-arg index="0" value="오순"/>
+		<beans:constructor-arg index="1" value="2"/>
+		<beans:constructor-arg index="2" value="16"/>
+		<!-- 생성자 매개변수 개수 안 맞으면 안됨! -->
+	</beans:bean>
+	
+	<beans:bean id="dosoon" class="com.bs.spring.beantest.Animal">
+		<beans:property name="name" value="도순"/>
+	</beans:bean>
+	
+	<!-- 의존관계를 갖는 클래스 bean으로  -->
+	<beans:bean id="p" class="com.bs.spring.beantest.Person"
+	 init-method="init"
+	 destroy-method="destroyTest"> 
+	 <!-- init-method="Person클래스의 메소드명" , 
+	 destroy-method="Person클래스의 메소드명" -> 서버 꺼질 때 -->
+		<beans:property name="a" ref="obok"/>  <!-- ref="참조값(참조할 bean의 id)" -->
+	</beans:bean>
+
+	<beans:bean id="p2" class="com.bs.spring.beantest.Person"
+	init-method="init">
+		<beans:constructor-arg index="0" value="최헌수" />
+		<beans:constructor-arg index="1" value="24" />
+		<beans:constructor-arg index="2" ref="obok" />
+	</beans:bean>
+
+
+</beans:beans>
