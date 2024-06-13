@@ -2,19 +2,15 @@ package com.bs.spring.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bs.spring.beantest.Animal;
 import com.bs.spring.beantest.BeanTest;
 import com.bs.spring.beantest.Food;
 import com.bs.spring.beantest.Person;
-import com.google.gson.Gson;
 
 @Controller
 public class HomeController {
@@ -50,17 +46,17 @@ public class HomeController {
 	@Autowired
 	private Food gom;
 	
-	@Autowired
-	private Gson gson;
+//	@Autowired
+//	private Gson gson;
 	
 	@Autowired
 	private List<Food> foods;
 	
 	
-	@RequestMapping("/gson")
-	public void date(HttpServletResponse response) throws Exception{
-		gson.toJson(gom, response.getWriter());
-	}
+//	@RequestMapping("/gson")
+//	public void date(HttpServletResponse response) throws Exception{
+//		gson.toJson(gom, response.getWriter());
+//	}
 	
 
 	

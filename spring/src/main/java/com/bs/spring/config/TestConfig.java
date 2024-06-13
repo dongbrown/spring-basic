@@ -2,8 +2,6 @@ package com.bs.spring.config;
 
 import java.util.List;
 
-import javax.inject.Qualifier;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +12,6 @@ import org.springframework.core.annotation.Order;
 import com.bs.spring.beantest.BeanTest;
 import com.bs.spring.beantest.Food;
 import com.bs.spring.beantest.Person;
-import com.google.gson.Gson;
 
 @Configuration // 자바코드로 설정 파일 작성 -> springbean configuration.xml(servlet-context.xml)과 동일 -> bean 등록 가능
 @ComponentScan(basePackages = "com.bs.spring", 
@@ -60,12 +57,12 @@ public class TestConfig {
 		return new BeanTest();
 	}
 	
-	@Bean
-	public Gson gson() {
-		Gson gson = new Gson();
-//		gson.newBuilder().~
-		return new Gson();
-	}
+//	@Bean
+//	public Gson gson() {
+//		Gson gson = new Gson();
+////		gson.newBuilder().~
+//		return new Gson();
+//	}
 	
 //	@Bean
 //	public BasicDataSource datasource() {

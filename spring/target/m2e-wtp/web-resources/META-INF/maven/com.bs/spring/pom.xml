@@ -11,6 +11,7 @@
 	<properties>
 		<java-version>17</java-version>
 		<org.springframework-version>5.3.28</org.springframework-version>
+		<org.springsecurity-version>5.8.4</org.springsecurity-version>
 		<org.aspectj-version>1.9.19</org.aspectj-version>
 		<org.slf4j-version>2.0.7</org.slf4j-version> <!-- log4j관련 -->
 	</properties>
@@ -137,12 +138,95 @@
 			<version>1.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
+		<!--	<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
 		</dependency>
+-->
 
+	<!-- 
+		DB에 연결하기 위한 라이브러리 가져오기
+		1. jdbc -> ojdbc11
+		2. spring-jdbc -> springframework 버전
+		3. mybatis -> 3.5.13
+		4. mybatis-spring -> 3.0.2
+		5. commons-dbcp -> 1.4
+	-->
+
+		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc11</artifactId>
+			<version>23.2.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version> <!-- 버전 위에서 가져오기 -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.5.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- 
+			hibernate validator 이용하기
+			bean에 저장되는 유효성 검사를 위한 라이브러리
+			6.2.5 버전(톰캣, javax 버전과 맞춰줘야함)
+			DTO에 validator 설정 => Member
+		-->
+		<!--
+		https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.2.5.Final</version>
+		</dependency>
+
+		<!-- 
+			spring-security 이용 -> 패스워드 암호화 적용하기
+		-->
+		<!--
+		https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${org.springsecurity-version}</version>
+		</dependency>
+
+		<!-- jdbc logger출력하는 라이브러리 => sql문, resultSet의 결과를 출력해주는 로거 -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency>
 
 		<!-- Test -->
 		<dependency>
@@ -151,6 +235,11 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		
+		
+		
+		
+		
 	</dependencies>
 	<build>
 		<plugins>

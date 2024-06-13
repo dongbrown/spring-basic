@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="demo">
+	<insert id="insertDemo" parameterType="demo">
+		INSERT INTO DEV VALUES(SEQ_DEV_NO.NEXTVAL, #{devName}, #{devAge}, 
+			#{devEmail}, #{devGender}, #{devLang, typeHandler=strArr})
+	</insert>
+	<!-- 배열일 때 typeHandler 사용-->
+	
+	<resultMap type="demo" id="demoMap">
+		<result column="devlang" property="devLang" typeHandler="strArr"/>
+		<!-- collection이나 association이 들어가면 모든 컬럼 작성해줘야함 -->
+	</resultMap>
+	
+	
+	
+	<select id="selectDemoAll" resultMap="demoMap">
+		SELECT * FROM DEV
+	</select>	
+	
+	<select id="selectDemoCount" resultType="_int">
+		SELECT COUNT(*) FROM DEV
+	</select>
+	
+	<update id="updateDemo" parameterType="demo">
+		UPDATE DEV
+		SET
+			devName = #{devName},
+			devAge = #{devAge},
+			devEmail = #{devEmail},
+			devGender = #{devGender},
+			devLang = #{devLang, typeHandler=strArr}
+		WHERE
+			devNo = #{devNo}
+	</update>
+	
+	<delete id="deleteDemo" parameterType="int">
+		DELETE FROM DEV WHERE devNo = #{devNo}
+	</delete>
+	
+</mapper>

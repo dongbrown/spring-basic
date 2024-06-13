@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<!-- typeAlias, setting에 대한 설정만! -->
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL" /> <!-- null이면 null나오도록(설정 안하면 null일 때 오류) -->
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.bs.spring.demo.model.dto.Demo" alias="demo"/>
+		<typeAlias type="com.bs.spring.common.StringArrayToStringType" alias="strArr"/>
+		<typeAlias type="com.bs.spring.member.model.dto.Member" alias="member"/>
+	</typeAliases>
+
+</configuration>

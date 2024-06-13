@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="#{pageContext.request.contextPath }"/>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,14 +45,63 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="${path }/demo/demo.do">Demo</a>
 						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="${path }/demo/demolist.do">DemoList</a>
+						</li>
 					</ul>
+					<c:if test="${empty sessionScope.loginMember }">
 						<button class="btn btn-outline-success my-2 my-sm-0"
 						data-toggle="modal" data-target="#loginModal">로그인</button>
 						&nbsp;
 						<button class="btn btn-outline-primary my-2 my-sm-0"
-						onclick="">
+						onclick="location.assign('${path}/member/enrollmember.do')">
 							회원가입
 						</button>
+					</c:if>
+					<c:if test="${not empty sessionScope.loginMember }">
+					<span>
+						<a href="">
+							<c:out value="${sessionScope.loginMember.userName }"/>
+						</a>
+						님, 환영합니다!
+						</span>
+						<button class="btn btn-outline-dark" 
+						onclick="location.replace('${path}/member/logout.do')">
+							로그아웃
+						</button>
+					</c:if>
 				</div>
 			</nav>	
+			
+			<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="loginModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="loginModalLabel">로그인</h5>
+						<button type="button" class="close" 
+						data-dismiss="modal" aria-label="close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form action="${path}/member/login.do" method="post">
+						<div class="modal-body">
+							<input type="text" name="userId" class="form-control"
+							placeholder="아이디입력" required><br/>
+							<input type="password" name="pw" class="form-control"
+							placeholder="패스워드입력" required>	<br/>
+							<label><input type="checkbox" name="saveUser">로그인유지</label>										
+						</div>
+						<div class="modal-footer">
+							<button type="submit" class="btn btn-outline-success" >로그인</button>
+							<button type="button" class="btn btn-outline-success"
+							data-dismiss="modal">취소</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+			
+			
+			
 		</header>

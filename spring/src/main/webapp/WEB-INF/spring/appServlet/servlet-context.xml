@@ -68,6 +68,22 @@
 		<beans:constructor-arg index="1" value="24" />
 		<beans:constructor-arg index="2" ref="obok" />
 	</beans:bean>
+	
+	<!-- 인터셉터등록하기 -->
+	<!-- 1. 인터셉터구현클래스 spring bean으로 등록 -->
+	<beans:bean id="basicInter" 
+		class="com.bs.spring.common.interceptors.BasicInterceptor"/>
+	
+	<!-- 2. 인터셉터 설정하기 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/member/*"/>
+			<beans:ref bean="basicInter"/>
+		</interceptor>
+	</interceptors>
+	
+	
+	
 
 
 </beans:beans>

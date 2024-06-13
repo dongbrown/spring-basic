@@ -15,7 +15,7 @@ div#demo-container {
 <section id="content">
 	<div id="demo-container">
 		<h2>controller parameter 처리하기</h2>
-		<form id="devFrm" method="post">
+		<form id="devFrm" method="POST">
 			<div class="form-group row">
 				<label for="devName" class="col-sm-2 col-form-label">이름</label>
 				<div class="col-sm-10">
@@ -80,22 +80,19 @@ div#demo-container {
 			<div class="form-group row">
 				<label for="zipCode" class="col-sm-2 col-form-label"> 우편번호</label>
 				<div class="col-sm-10">
-					<input id="zipCode" name="zipCode" class="form-control"
-						type="text">
+					<input id="zipCode" name="zipCode" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="city" class="col-sm-2 col-form-label"> 시군구</label>
 				<div class="col-sm-10">
-					<input id="city" name="city" class="form-control"
-						type="text">
+					<input id="city" name="city" class="form-control" type="text">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label for="detail" class="col-sm-2 col-form-label"> 상세주소</label>
 				<div class="col-sm-10">
-					<input id="detail" name="detail" class="form-control"
-						type="text">
+					<input id="detail" name="detail" class="form-control" type="text">
 				</div>
 			</div>
 
@@ -124,10 +121,40 @@ div#demo-container {
 						onclick="requestTest('demo4.do')">Command이용하기</button>
 				</div>
 			</div>
-						<div class="form-group row">
+			<div class="form-group row">
 				<div class="col-sm-12">
 					<button type="button" class="btn btn-outline-primary col-sm-12"
 						onclick="requestTest('demo5.do')">Map으로 매핑하기</button>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-outline-primary col-sm-12"
+						onclick="requestTest('extra.do')">추가 데이터 확인</button>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-outline-primary col-sm-12"
+						onclick="requestTest('demo6.do')">ModelAndView 반환하기</button>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-outline-primary col-sm-12"
+						onclick="requestTest('demo7.do')">데이터 반환하기</button>
+				</div>
+			</div>
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-outline-primary col-sm-12"
+						onclick="requestTest('demo8.do')">요청메소드 설정하기</button>
+				</div>
+			</div>
+						<div class="form-group row">
+				<div class="col-sm-12">
+					<button type="button" class="btn btn-outline-primary col-sm-12"
+						onclick="requestTest('insertdemo.do')">Demo 저장하기</button>
 				</div>
 			</div>
 		</form>

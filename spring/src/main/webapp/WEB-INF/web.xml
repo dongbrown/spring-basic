@@ -5,7 +5,10 @@
 
    <context-param>
       <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/spring/root-context.xml</param-value>
+      <param-value>
+      /WEB-INF/spring/root-context.xml
+      /WEB-INF/spring/security-context.xml
+      </param-value>
    </context-param>
    
    <!-- servler filter 등을 공유하는 spring container를 생성 -->
