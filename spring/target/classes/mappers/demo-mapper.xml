@@ -34,7 +34,7 @@
 			devNo = #{devNo}
 	</update>
 	
-	<delete id="deleteDemo" parameterType="int">
+	<delete id="deleteDemo" parameterType="_int">
 		DELETE FROM DEV WHERE devNo = #{devNo}
 	</delete>
 	

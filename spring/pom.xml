@@ -236,8 +236,14 @@
 			<scope>test</scope>
 		</dependency>
 		
-		
-		
+		<!-- aspectjweaver -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
 		
 		
 	</dependencies>

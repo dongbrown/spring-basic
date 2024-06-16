@@ -86,8 +86,8 @@ public class MemberController {
 		model.addAttribute("loc", "");
 		if(result > 0) {
 			System.out.println("회원가입 성공");
-			return login(m.getUserId(), m.getPassword(), model); //가입과 동시에 로그인 처리
-//			return "redirect:/";	
+//			return login(m.getUserId(), m.getPassword(), model); //가입과 동시에 로그인 처리
+			return "redirect:/";	
 		}else {
 			System.out.println("회원가입 실패");
 			model.addAttribute("msg", "실패");

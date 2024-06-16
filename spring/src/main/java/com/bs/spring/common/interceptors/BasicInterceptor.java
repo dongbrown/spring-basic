@@ -1,6 +1,10 @@
 package com.bs.spring.common.interceptors;
 
 import java.lang.reflect.Method;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class BasicInterceptor implements HandlerInterceptor{
+	private LocalDateTime checkDate;
+	
+	//servlet-context.xml에 인터셉터 등록
+	
 	
 	//지정된 controller의 매핑메소드가 실행되기 전에 실행되는 메소드
 	@Override
@@ -20,6 +28,7 @@ public class BasicInterceptor implements HandlerInterceptor{
 			throws Exception {
 		
 		log.debug("--------- 인터셉터 prehandle 실행 ---------");
+		checkDate = LocalDateTime.now();
 		log.debug(request.getRequestURI());
 		log.debug("----------------------------------------");
 
@@ -28,7 +37,7 @@ public class BasicInterceptor implements HandlerInterceptor{
 		HandlerMethod hm = (HandlerMethod)handler; // 다운캐스팅
 		//실행 클래스 가져오기
 		Object controller = hm.getBean();
-		log.debug("{}", controller);
+		log.debug("{}", controller); // {} => 플레이스홀더를 사용하여 객체의 문자열 표현을 로그 메시지에 포함
 		//실행 메소드 가져오기
 		Method method = hm.getMethod();
 		log.debug(method.getName());
@@ -41,8 +50,17 @@ public class BasicInterceptor implements HandlerInterceptor{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		//
-		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+		// controller의 매핑메소드가 끝나고 나서
+		
+		long lentency = ChronoUnit.SECONDS.between(checkDate, LocalDateTime.now());
+		
+		log.debug("-------- posthandle 실행 --------");
+		System.out.println(lentency );
+		Map<String, Object> model = modelAndView.getModel();
+		log.debug("{}", model);
+		String viewName = modelAndView.getViewName();
+		log.debug(viewName);
+		log.debug("---------------------------------");
 	}
 	
 	
