@@ -49,7 +49,10 @@
 							<a class="nav-link" href="${path }/demo/demolist.do">DemoList</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link" href="${path }/memo/memolist">MemoList</a>
+							<a class="nav-link" href="${path }/memo/memolist">Memo</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link" href="${path }/board/boardlist.do">Board</a>
 						</li>
 					</ul>
 					<c:if test="${empty sessionScope.loginMember }">

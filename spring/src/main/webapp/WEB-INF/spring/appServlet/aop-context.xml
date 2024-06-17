@@ -5,17 +5,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-    <bean id="loggerAspect" class="com.bs.spring.common.aop.LoggerAspect"/>
+	<!-- 1. bean으로 등록하여 적용하기 -->
+    <!--  <bean id="loggerAspect" class="com.bs.spring.common.aop.LoggerAspect"/>
 
     <aop:config>
         <aop:aspect ref="loggerAspect">
-            <!-- pointcut 등록 -->
+            pointcut 등록
             <aop:pointcut expression="execution(* com.bs.spring.member.model..*(..))" id="memoPoint"/>
-            <!-- execution()안에 적은 범위에서의 로그 -->
-            <!-- advisor 등록 -->
+            execution()안에 적은 범위에서의 로그
+            advisor 등록
             <aop:before method="loggerBefore" pointcut-ref="memoPoint"/>
             <aop:after method="loggerAfter" pointcut-ref="memoPoint"/>
         </aop:aspect>
-    </aop:config>
+    </aop:config> -->
+    
+    <!-- 2. 어노테이션 방식으로 적용하기 -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 </beans>

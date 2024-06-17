@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -66,16 +65,17 @@ public class MemoController {
 	}
 	
 	@DeleteMapping("/deletememo.do")
-	public String deleteMemo(@RequestBody Map<String, Integer> memoData, Model m) {
-	    int memoNo = memoData.get("memoNo");
+	public String deleteMemo(@RequestParam int memoNo) {
 	    int result = service.deleteMemo(memoNo);
-	    if(result > 0) {
-	        return "redirect:/memo/memolist";
+	    if (result > 0) {
+	        log.debug("삭제 완료");
 	    } else {
-	        m.addAttribute("msg", "메모 삭제 실패"); 
-	        m.addAttribute("loc", "/memo/memolist"); 
-	        return "common/msg";
+	        log.debug("삭제 실패");
 	    }
+	    return "redirect:/memo/memolist";
 	}
+
+
+
 
 }

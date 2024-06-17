@@ -9,7 +9,7 @@
 <body>
 	<script>
 		alert('${msg}')/* Model에 저장된 msg, loc */
-		loaction.replace("${pageContext.request.contextPath}${loc}");
+		loaction.replace('${pageContext.request.contextPath}${loc}');
 	</script>
 </body>
 </html>

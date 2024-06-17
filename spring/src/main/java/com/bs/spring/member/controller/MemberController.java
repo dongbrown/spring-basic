@@ -39,6 +39,12 @@ public class MemberController {
 		log.debug("{}", m);
 		
 		String page = "";
+		
+		// 의도적으로 RuntimeException 발생시키기 -> afterThrowingLogger 확인하기
+//		if(page.equals(""))throw new RuntimeException();
+		
+		//
+		
 
 //		if(m != null && m.getPassword().equals(pw)) {
 		if(m != null && pwencoder.matches(pw, m.getPassword())) {

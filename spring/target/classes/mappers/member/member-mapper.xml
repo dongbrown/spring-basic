@@ -4,6 +4,7 @@
 	
 	
 	<resultMap type="member" id="memberMap">
+		<id column="userId" property="userId" />
 		<result column="hobby" property="hobby" typeHandler="strArr"/>
 		<!-- 배열일 때 typeHandler -->
 		<!-- collection이나 association이 들어가면 모든 컬럼 작성해줘야함 -->

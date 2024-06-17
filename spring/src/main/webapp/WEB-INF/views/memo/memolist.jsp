@@ -59,28 +59,23 @@ div#memo-container {
 </section>
 <script>
 function deleteMemo(memoNo) {
-	   if(confirm("정말 삭제하시겠습니까?")) {
-	      fetch(`/memo/deletememo.do`, {
-	         method: 'DELETE',
-	         headers: {
-	            'Content-Type': 'application/json'
-	         },
-	         body: JSON.stringify({ memoNo: memoNo })
-	      })
-	      .then(response => {
-	         if (response.ok) {
-	            alert("삭제 완료");
-	            location.reload(); // 페이지 새로고침
-	         } else {
-	            alert("삭제 실패");
-	         }
-	      })
-	      .catch(error => {
-	         console.error("Error:", error);
-	         alert("오류 발생");
-	      });
-	   }
-	}
-
+    if (confirm("정말 삭제하시겠습니까?")) {
+        fetch('${path}/memo/deletememo.do?memoNo=' + memoNo, {
+            method: 'DELETE'
+        }).then(response => {
+            if (response.ok) {
+                alert("삭제 성공");
+                location.reload(); // 페이지 새로고침
+            } else {
+                alert("삭제 실패");
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+            alert("삭제 중 오류 발생");
+        });
+    }
+}
 </script>
+
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -48,6 +48,9 @@
 	<filter-name>encodingFilter</filter-name>
 	<url-pattern>/*</url-pattern> <!-- 모든 요청에 적용 -->
    </filter-mapping>       
-                       
+   
+   <!-- <error-page>
+   </error-page> -->
+   <!--  -->      
                        
 </web-app>
