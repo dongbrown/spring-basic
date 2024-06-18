@@ -14,8 +14,8 @@ import lombok.NoArgsConstructor;
 public class Attachment {
 	
 	private int attachNo;
-	private String originalFileName;
-	private String renamedFileName;
+	private String originalFilename;
+	private String renamedFilename;
 	private int boardNo;
 	private Date uploadDate;
 	private int downloadCount;

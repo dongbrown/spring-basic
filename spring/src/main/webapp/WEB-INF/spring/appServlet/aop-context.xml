@@ -20,6 +20,6 @@
     </aop:config> -->
     
     <!-- 2. 어노테이션 방식으로 적용하기 -->
-    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
+     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+ 
 </beans>

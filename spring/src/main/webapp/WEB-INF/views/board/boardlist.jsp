@@ -7,12 +7,12 @@
     <jsp:param name="title" value=""/>
 </jsp:include>
 <section id="board-container" class="container">
-    <div>
-        <span>총 ${totalContents }건의 게시물이 있습니다.</span>
-        <span>            
-            <a class="btn btn-outline-success" href='${path}/board/inputboard.do'>글쓰기</a>
-        </span>
-    </div>
+		<div>
+	        <span>총 ${totalContents }건의 게시물이 있습니다.</span>
+	        <div style="display:flex;width:100%; justify-content:end;">            
+	            <a class="btn btn-outline-dark" href='${path}/board/inputboard.do'>글쓰기</a>
+	        </div>
+        </div>
         
     <table id="tbl-board" class="table table-striped table-hover">
         <tr>
@@ -32,7 +32,11 @@
                 <td><a href="${path }/board/boardDetail?boardNo=${b.boardNo }">${b.boardTitle}</a></td>
                 <td>${b.boardWriter }</td>
                 <td>${b.boardDate}</td>
-                <td></td>
+                <td>
+                	<c:if test = "${b.files.size() > 0 && b.files.get(0).attachNo != 0}">
+                		<img src="${path }/resources/images/file.png" width="25" height="25">
+                	</c:if>
+                </td>
                 <td>${b.boardReadCount}</td>
                 <td>
                     <button class="btn btn-outline-success" 

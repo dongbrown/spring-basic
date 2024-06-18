@@ -54,6 +54,9 @@
 						<li class="nav-item active">
 							<a class="nav-link" href="${path }/board/boardlist.do">Board</a>
 						</li>
+						<li class="nav-item active"><a class="nav-link"
+							href="${path }/board/calendar">일정관리</a>
+						</li>
 					</ul>
 					<c:if test="${empty sessionScope.loginMember }">
 						<button class="btn btn-outline-success my-2 my-sm-0"

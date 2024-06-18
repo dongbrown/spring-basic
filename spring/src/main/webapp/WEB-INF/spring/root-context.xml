@@ -47,9 +47,27 @@
       	<constructor-arg index="0" ref="sqlSessionFactory"/>
       </bean>
       
+      <!-- 트랜잭션 처리하기 -->
+      <bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      	<property name="dataSource" ref="proxyDataSource"></property>
+      </bean>
       
+      <!-- 1. 어노테이션으로 트랜잭션 처리하기 -->
+      <!-- <tx:annotation-driven transaction-manager="transactionManager"/> -->
       
+      <!-- 2. xml방식으로 트랜잭션 처리하기 -->
+      <tx:advice id="txadvice" transaction-manager="transactionManager">
+      	<tx:attributes>
+      		<tx:method name="insert*" /> <!-- 어떤 메소드 -->
+      	</tx:attributes>
+      </tx:advice>
       
-      
+      <aop:config>
+      	<aop:pointcut expression="within(com.bs.spring.board.model.service.*Impl)" id="trans"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="trans"/>      	
+      </aop:config>
+
+		      
       
 </beans>

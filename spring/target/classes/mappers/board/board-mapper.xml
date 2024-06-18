@@ -12,8 +12,8 @@
 
 		<collection property="files" ofType="attachment">
 			<id column="attachmentno" property="attachNo" />
-			<result column="originalfilename" property="originalFileName" />
-			<result column="renamedfilename" property="renamedFileName" />
+			<result column="originalfilename" property="originalFilename" />
+			<result column="renamedfilename" property="renamedFilename" />
 			<result column="boardNo" property="boardNo" />
 			<result column="uploaddate" property="uploadDate" />
 			<result column="downloadcount" property="downloadCount" />
@@ -33,6 +33,12 @@
 	<insert id="boardInsert" parameterType="board">
 		INSERT INTO BOARD VALUES (SEQ_BOARDNO.NEXTVAL, #{boardTitle},
 		#{boardWriter}, #{boardContent}, default, default)
+		<!-- 쿼리문 실행 전/후 값 가져오기 (order="before/after")-->
+		<selectKey keyProperty="boardNo" order="AFTER" resultType="_int"> 
+		<!-- Board객체 필드에 boardNo(int -> resultType)를 넣어서 반환 -->
+			SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+			<!-- 현재 만든 boardNo 가져오기 ( CURRVAL 대신 max 사용해도 됨 )-->
+		</selectKey>
 	</insert>
 
 	<select id="boardByNo" resultMap="boardMap" parameterType="_int">
@@ -51,7 +57,18 @@
 	<delete id="boardDelete" parameterType="_int">
 	 	DELETE FROM BOARD WHERE BOARDNO = #{boardNo}
 	</delete>
-
+	
+	<insert id="insertAttach" parameterType="attachment">
+		INSERT INTO ATTACHMENT VALUES(SEQ_ATTACHMENTN.NEXTVAL, #{boardNo},
+		#{originalFilename}, #{renamedFilename}, DEFAULT, DEFAULT, DEFAULT)
+		
+		
+		<!-- <selectKey keyProperty="boardNo" order="BEFORE" resultType="_int"> 
+		Board객체 필드에 boardNo(int -> resultType)를 넣어서 반환
+			SELECT SEQ_BOARDNO.CURRVAL FROM DUAL
+			현재 만든 boardNo 가져오기 ( CURRVAL 대신 max 사용해도 됨 )
+		</selectKey> -->
+	</insert>
 
 
 
