@@ -42,8 +42,7 @@ public class DemoServiceImpl implements DemoService {
 
 	@Override
 	public Demo selectDemoByNo(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.selectDemoByNo(session, no);
 	}
 
 	@Override

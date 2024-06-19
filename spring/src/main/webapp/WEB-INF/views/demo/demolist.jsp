@@ -5,6 +5,10 @@
    <jsp:param name="title" value="Demo리스트"/>
 </jsp:include>
 <section id="content">
+	<button class="btn btn-outline-success"
+	onclick="location.assign('${pageContext.request.contextPath}/demo/excelfile')">
+		엑셀로 받기
+	</button>
    <table class="table">
       <tr>
          <th scope="col">번호</th>

@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
+import com.bs.spring.common.ExcelDemoListConvert;
 import com.bs.spring.demo.model.dto.Address;
 import com.bs.spring.demo.model.dto.Demo;
 import com.bs.spring.demo.model.service.DemoService;
@@ -331,7 +333,14 @@ public class DemoController {
         return "redirect:/demo/demolist.do";
     }
 	
-	
+	@GetMapping("/demo/excelfile")
+//	public View excelDocument(Model model) {
+	public String excelDocument(Model model) {
+		List<Demo> demoList = service.selectDemoList(Map.of("cPage", 1, "numPerpage", 2));
+		model.addAttribute("demoList", demoList);
+//		return new ExcelDemoListConvert();
+		return "excel"; //Servlet-context.xml에 ViewResolver 추가 후 ExcelDemoListConvert @Component로 찾아서
+	}
 	
 	
 	

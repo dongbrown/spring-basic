@@ -18,8 +18,15 @@
    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <beans:property name="prefix" value="/WEB-INF/views/"/> <!-- view 파일 경로의 접두사 -->
       <beans:property name="suffix" value=".jsp"/> <!-- view 파일 경로의 접미사 -->
+      <beans:property name="order" value="3"/>
    </beans:bean>
    
+   <!-- ViewResolver 추가 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver"> <!-- 빈 이름으로 View를 찾는 Resolver -->
+		<beans:property name="order" value="1"></beans:property> <!-- 현재 viewresolver 2개 -> 순서를 1번으로 -->
+	</beans:bean>   <!-- 리턴 값을 빈 이름으로 -> 빈 이름으로 뷰를 찾음  -->
+	
+	
    <!-- 어노테이션으로 등록된 클래스 찾는 설정 -->
    <context:component-scan base-package="com.bs.spring"/>   
 
@@ -99,6 +106,32 @@
 	 	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	 	<beans:property name="maxUploadSize" value="104857600"/><!-- 100메가 1024 * 1024 * 100 -->
 	 </beans:bean>
+	 
+	 <!-- Jackson converter를 bean으로 등록 -->
+	 <!-- messageconverter로 등록 -->
+	
+	<!-- converter bean으로 등록 안해도 됨! -->
+<!-- 	<beans:bean id="jacksonConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+	</beans:bean>
+	
+	<beans:bean 
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<beans:property name="messageConverters">
+			<beans:list>
+				<beans:ref bean="jacksonConverter"/>
+			</beans:list>
+		</beans:property>
+	</beans:bean> -->
+
+
+
+
+
+
+
+
+	 
 	
 
 

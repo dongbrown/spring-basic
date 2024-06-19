@@ -261,6 +261,29 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- ViewResolver - 응답하는 내용에 대한 처리 -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.3</version>
+		</dependency>
+		
+		<!-- JSON 응답 라이브러리 (GSON)-->
+		<!--<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.10.1</version>
+		</dependency> -->
+
+		<!-- jackson -> Gson 지워도 됨 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.2</version>
+		</dependency>
+
+
+
 		
 	</dependencies>
 	<build>
