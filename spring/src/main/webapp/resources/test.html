@@ -12,7 +12,11 @@
 		document.querySelector("#demoall")
 		.addEventListener("click",e=>{
 			fetch("/spring/demos")
-			.then(response=>response.json())
+			.then(response=>{
+				console.log(response);
+				
+				return response.json()
+			})
 			.then(data=>{
 				console.log(data);
 			});
@@ -31,11 +35,62 @@
 					devGender:"M",
 					devLang:["java","ruby","go","c#"]
 				})
-			}).then(response=>response.json())
+			}).then(response=>{
+				console.log(response.headers.get("myheader"));				
+				return response.json();
+			
+			})
 			.then(data=>{
 				console.log(data);
 			})
 		})
 	</script>
+	
+	
+	<button  onclick="dockerData()">도커 이미지</button> <br>
+	<input id="name" type="text">
+	<button  onclick="logCheck()">로그 확인
+	</button>
+	<div id="dockers"></div>
+	<script>
+	const dockerData=()=>{
+		fetch("/spring/demos/dockers")
+		.then(response=>response.json())
+		.then(data=>{
+			console.log(data);
+		});
+	}
+	</script>
+	
+	<script>
+		const logCheck = () => {
+			const name = document.getElementById("name").value;
+			fetch(`/spring/demos/log/${name}`,{
+				headers:{
+					"Content-Type" : "application/json"
+				}
+			})
+			.then(response => response.text())
+			.then(data => {
+				document.getElementById("dockers").innerHTML = data;
+			});
+		}
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

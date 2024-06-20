@@ -92,10 +92,17 @@
 			<exclude-mapping path="/demo/demo.do"/> <!-- 이것만 제외하기 -->
 			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> <!-- 빈 등록 -->
 		</interceptor>
+				<interceptor>
+			<mapping path="/chat*"/>
+			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> <!-- 빈 등록 -->
+		</interceptor>
 <!-- 		<interceptor>
 			<mapping path="/memo/*"/>
 			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> 빈 등록
 		</interceptor> -->
+		
+		
+		
 	</interceptors>
 	
 	<!-- 
@@ -123,10 +130,18 @@
 			</beans:list>
 		</beans:property>
 	</beans:bean> -->
-
-
-
-
+	
+	
+	<!--  websocket서버를 bean으로 등록 -->
+	<beans:bean id="chatting" 
+		class="com.bs.spring.websocket.controller.ChattingServer"/>
+	<!--  websocket핸들러 등록 -->
+	<websocket:handlers>
+		<websocket:mapping handler="chatting" path="/chatting"/>
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 
 
 

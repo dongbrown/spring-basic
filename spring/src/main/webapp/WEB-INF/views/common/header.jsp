@@ -74,6 +74,13 @@
 						</a>
 						님, 환영합니다!
 						</span>
+						
+						<button class="btn btn-outline-dark" 
+						onclick="openChatting();">
+							채팅하기
+						</button>
+						
+						
 						<button class="btn btn-outline-dark" 
 						onclick="location.replace('${path}/member/logout.do')">
 							로그아웃
@@ -83,7 +90,7 @@
 			</nav>	
 			
 			<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-		aria-labelledby="loginModalLabel" aria-hidden="true">
+				aria-labelledby="loginModalLabel" aria-hidden="true">
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -111,6 +118,19 @@
 			</div>
 		</div>
 			
-			
-			
 		</header>
+		
+		
+		<script>
+			const openChatting = () =>{
+				//새창열기
+				open("${path}/chatpage", "_blank", "width=400, height=500");
+			}
+		
+		</script>
+		
+		
+		
+		
+		
+		

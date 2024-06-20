@@ -24,6 +24,9 @@ public class WebMVCConfig implements WebMvcConfigurer{
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/board/inputboard.do") // 이 요청이 들어오면
 		.setViewName("board/inputBoard"); // 이 페이지로 이동
+		
+		registry.addViewController("/chatpage")
+		.setViewName("chat/chatpage");
 	}
 
 	//예외처리할 bean을 등록해서 활용할 수 있음
