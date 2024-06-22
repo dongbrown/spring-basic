@@ -27,6 +27,9 @@ public class WebMVCConfig implements WebMvcConfigurer{
 		
 		registry.addViewController("/chatpage")
 		.setViewName("chat/chatpage");
+		
+		registry.addViewController("/loginpage")
+		.setViewName("member/login");
 	}
 
 	//예외처리할 bean을 등록해서 활용할 수 있음

@@ -96,7 +96,6 @@ const sendMessage = () => {
     }
 }
 
-// 경고 메시지를 출력하는 함수
 const alertMessage = (msg) => {
     // 경고 메시지 출력 로직을 여기에 작성
     const $container = $("<div>").addClass("alertContainer");

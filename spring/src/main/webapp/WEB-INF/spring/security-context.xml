@@ -8,4 +8,79 @@
       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- configuration 클래스 만들어서 해도 됨 -->
 	<bean id="bcryptPassword" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	
+	<!-- security를 이용한 인증 처리하기 -->
+	<!-- security:http 태그로 시작 -->
+	<security:http auto-config="true">
+		
+		<!-- 인증화면(로그인화면) 커스터마이징하기 -->
+		<!-- 
+			security:form-login 속성으로 설정 -> 설정 안하면 기본 형식 * 각 속성 값은 컨트롤러 매핑 주소
+				username-parameter : login페이지에서 보내는 id값의 key값 설정
+				password-parameter : login페이지에서 보내는 password값의 key값 설정
+				login-page : 로그인페이지와 연결되는 url주소
+				default-target-url : 인증 후 연결될 기본 주소 설정 -> 설정 안하면 이전페이지로 이동
+				authentication-failure-forward-url : 인증 실패 후 연결될 서비스 (ex.인증 5번 실패 시 1분간 로그인 못하게 등)
+				authentication-success-forward-url : 인증 성공 후 연결될 서비스
+				login-processing-url : 로그인 처리할 주소 값 설정 * 시큐리티가 처리하는 것 
+		-->
+		
+		<security:form-login login-page="/loginpage"
+		username-parameter="userId" password-parameter="pw" 
+		login-processing-url="/loginbs"/>
+		<!--  -->
+		 <!-- security:intercept-url 이용하여 접근 허용 해줘야 함! -->
+		
+		
+		<!-- 차단하고 허용할 url을 등록 -->
+		<!-- 허용 안한 url 들어가면 응답 차단 (302 error page) -->
+		<security:intercept-url pattern="/" access="permitAll()"/> <!-- 메인페이지 접근 허용 -->
+		<security:intercept-url pattern="/resources/**" access="permitAll()"/> <!-- resources폴더 접근 허용 -->
+		<security:intercept-url pattern="/loginpage" access="permitAll()"/> 
+		<!-- WebMVCConfig에 	registry.addViewController("/loginpage")
+		.setViewName("member/login"); -> 페이지 이동 설정 -->
+		<security:intercept-url pattern="/demo/**"
+			access="hasAnyAuthority('user')"/> <!-- user권한은 /demo/** 만 권한 -->
+		<security:intercept-url pattern="/**"
+			access="hasAnyAuthority('admin')"/>
+		
+		<!-- CSRF설정 해지 -->
+		<security:csrf disabled="true"/> <!-- disabled-> default : true -->
+		<security:form-login/>
+	</security:http>
+	
+	
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<!-- DB연결 없이  -->
+			<security:user-service>
+				<security:user name="admin" authorities="admin" 
+				password="$2a$10$QV49sa2yO.97l7VPgi/nMeL8Ton8icMF47PnSYNG72ra.ZVqJyQAy"/> <!-- 암호화된 값(1234) -->
+				<security:user name="user01" authorities="user" 
+				password="$2a$10$QV49sa2yO.97l7VPgi/nMeL8Ton8icMF47PnSYNG72ra.ZVqJyQAy"/> <!-- 암호화된 값(1234) -->
+			</security:user-service>
+			
+			<security:password-encoder ref="bcryptPassword"/>
+			
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </beans>
+
+
+
+
+
+
+
+
+
+

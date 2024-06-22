@@ -81,29 +81,29 @@
 	<beans:bean id="basicInter" 
 		class="com.bs.spring.common.interceptors.BasicInterceptor"/>
 	
-	<!-- 2. 인터셉터 설정하기 -->
+<!-- 	 2. 인터셉터 설정하기 
 	<interceptors>
 		<interceptor>
 			<mapping path="/member/*"/>
-			<beans:ref bean="basicInter"/> <!-- 위에 빈 참조 -->
+			<beans:ref bean="basicInter"/> 위에 빈 참조
 		</interceptor>
 		<interceptor>
 			<mapping path="/demo/*"/>
-			<exclude-mapping path="/demo/demo.do"/> <!-- 이것만 제외하기 -->
-			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> <!-- 빈 등록 -->
+			<exclude-mapping path="/demo/demo.do"/> 이것만 제외하기
+			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> 빈 등록
 		</interceptor>
 				<interceptor>
 			<mapping path="/chat*"/>
-			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> <!-- 빈 등록 -->
+			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> 빈 등록
 		</interceptor>
-<!-- 		<interceptor>
+		<interceptor>
 			<mapping path="/memo/*"/>
 			<beans:bean class="com.bs.spring.common.interceptors.LoginCheckInterceptor"/> 빈 등록
-		</interceptor> -->
+		</interceptor>
 		
 		
 		
-	</interceptors>
+	</interceptors> -->
 	
 	<!-- 
 		multipartResolver bean 등록하기
