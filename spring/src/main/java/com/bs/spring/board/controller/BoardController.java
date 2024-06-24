@@ -166,9 +166,6 @@ public class BoardController {
 		}
 	}
 
-	@GetMapping("/calendar")
-	public String calendar() {
-		return "calendar/calendar";
-	}
+
 
 }

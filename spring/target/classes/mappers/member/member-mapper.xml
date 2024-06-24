@@ -8,12 +8,13 @@
 		<result column="hobby" property="hobby" typeHandler="strArr"/>
 		<!-- 배열일 때 typeHandler -->
 		<!-- collection이나 association이 들어가면 모든 컬럼 작성해줘야함 -->
+		<result column="username" property="name"/>
 	</resultMap>
 	<select id="selectMemberById" parameterType="string" resultMap="memberMap">
 		SELECT * FROM MEMBER WHERE USERID = #{userId}
 	</select>
 	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{userId}, #{password}, #{userName}, 
+		INSERT INTO MEMBER VALUES(#{userId}, #{password}, #{name}, 
 		#{gender}, #{age}, #{email}, #{phone}, #{address}, 
 		#{hobby, typeHandler=strArr}, sysdate)
 	</insert>

@@ -13,6 +13,7 @@
 		<typeAlias type="com.bs.spring.memo.model.dto.Memo" alias="memo"/>
 		<typeAlias type="com.bs.spring.board.model.dto.Board" alias="board"/>
 		<typeAlias type="com.bs.spring.board.model.dto.Attachment" alias="attachment"/>
+		<typeAlias type="com.bs.spring.schedule.model.dto.Schedule" alias="schedule"/>
 	</typeAliases>
 
 </configuration>

@@ -10,6 +10,6 @@
 	<div style="display:flex; width:100%;justify-content: center;">
 		<img alt="" src="${path }/resources/images/notaccess.png" width="300" height="300">
 	</div>
-	<h3 style="color:red;"><%=exception.getMessage() %></h3>
+	<h3 style="color:red;"><%=exception != null? exception.getMessage():"에러" %></h3>
 </section>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
